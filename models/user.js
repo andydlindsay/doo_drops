@@ -1,24 +1,21 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import { isEmail, isAlphanumeric } from 'validator';
+const mongoose = require('mongoose'),
+      bcrypt = require('bcryptjs');
 
 // User schema
 const schema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        validate: [ isAlphanumeric, 'invalid name']
+        maxlength: 55
     },
     email: {
         type: String,
         required: true,
-        validate: [ isEmail, 'invalid email address']
     },
     username: {
         type: String,
         required: true,
-        unique: true,
-        validate: [ isAlphanumeric, 'invalid username']
+        unique: true
     },
     password: {
         type: String,
@@ -26,5 +23,24 @@ const schema = mongoose.Schema({
     }
 });
 
-// export schema
-export default mongoose.model('User', schema);
+// export User
+const User = module.exports = mongoose.model("User", schema);
+
+module.exports.getUserById = function(id, callback) {
+    User.findById(id, callback);
+};
+
+module.exports.getUserByUsername = function(username, callback) {
+    const query = { username };
+    User.findOne(query, callback);
+};
+
+module.exports.addUser = function(newUser, callback) {
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });
+};

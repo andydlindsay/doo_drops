@@ -23,7 +23,7 @@ gulp.task('sass', () => {
 
 // mocha testing
 gulp.task('test', () => {
-    gulp.src('test/*.js')
+    return gulp.src(['test/*.js'])
         .pipe(mocha())
         .on('error', () => {});
 });
