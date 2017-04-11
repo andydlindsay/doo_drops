@@ -1,0 +1,39 @@
+{
+  "name": "doo_drops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --timeout 10000",
+    "start": "SET NODE_ENV=dev && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andydlindsay/doo_drops.git"
+  },
+  "author": "Andy Lindsay <andydlindsay@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andydlindsay/doo_drops/issues"
+  },
+  "homepage": "https://github.com/andydlindsay/doo_drops#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.19.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-mocha": "^4.3.0",
+    "gulp-sass": "^3.1.0",
+    "superagent": "^3.5.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^1.25.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.4",
+    "morgan": "^1.8.1",
+    "validator": "^7.0.0"
+  }
+}
