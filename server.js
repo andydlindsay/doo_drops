@@ -4,6 +4,7 @@ const express = require('express'),
       morgan = require('morgan'),
       path = require('path'),
       mongoose = require('mongoose'),
+      passport = require('passport'),
       bodyParser = require('body-parser');
 
 // use bluebird for mongoose promises
@@ -40,6 +41,14 @@ app.use(express.static(path.join(__dirname, 'client')));
 // body parser
 app.use(bodyParser.json());
 
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport configuration file
+require('./config/passport')(passport);
+
+// routes
 app.use('/api/users', users);
 
 // fall through any unmatched routes
