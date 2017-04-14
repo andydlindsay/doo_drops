@@ -31,14 +31,14 @@ router.post('/authenticate', (req, res) => {
     User.getUserByUsername(username, (err, user) => {
         if (err) {
             return res.json({success: false, msg: err.message});
-        };
+        }
         if (!user) {
             return res.json({success: false, msg: 'User not found'});
         }
         User.comparePassword(password, user.password, (err, isMatch) => {
             if (err) {
                 return res.json({success: false, msg: err.message});
-            };
+            }
             if (isMatch) {
                 const token = jwt.sign(user, config.secret, {
                     expiresIn: 60 * 60 * 24 * 7 // 1 week

@@ -24,7 +24,9 @@ gulp.task('sass', () => {
 // mocha testing
 gulp.task('test', () => {
     return gulp.src(['test/*.js'])
-        .pipe(mocha())
+        .pipe(mocha({
+            timeout: 10000
+        }))
         .on('error', () => {});
 });
 
