@@ -5,27 +5,27 @@ const mongoose = require('mongoose'),
 const schema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        maxlength: 55,
+        required: [true, 'name is a required field'],
+        maxlength: [55, 'name must be less than 55 characters'],
         minlength: [4,'name must be at least 4 characters long'],
         match: /^[a-zA-Z0-9\s]+$/
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'email is a required field'],
         match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     },
     username: {
         type: String,
-        required: true,
+        required: [true, 'username is a required field'],
         unique: true,
         minlength: [8, 'username must be at least 8 characters long'],
-        maxlength: 25,
-        match: /^[a-zA-Z0-9\s]+$/
+        maxlength: [25, 'username must be less than 25 characters long'],
+        match: /^[a-zA-Z0-9]+$/
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'password is a required field']
     }
 });
 
