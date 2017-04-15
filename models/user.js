@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
       bcrypt = require('bcryptjs');
 
 // User schema
-const schema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: [true, 'name is a required field'],
@@ -26,11 +26,42 @@ const schema = mongoose.Schema({
     password: {
         type: String,
         required: [true, 'password is a required field']
-    }
+    },
+    dogs: [{
+        name: {
+            type: String,
+            required: [true, 'dog name is a required field'],
+            maxlength: [25, 'dog name must be less than 26 characters'],
+            minlength: [1, 'dog name must be at least 1 character long'],
+            match: /^[a-zA-Z0-9]+$/
+        },
+        dob: {
+            type: Date,
+            validate: {
+                validator: (v) => {
+                    return v < Date.now();
+                },
+                message: 'date of birth must be in the past'
+            }
+        },
+        image: {
+            type: String,
+            match: /(https?:\/\/)?(www\.)?[-a-zA-Z0-9:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9:%_\+.~#?&//=]*)/ig
+        },
+        gender: {
+            type: String,
+            enum: ['male', 'female']
+        },
+        breed: {
+            type: String,
+            maxlength: [25, 'dog breed must be less than 26 characters'],
+            match: /^[a-zA-Z\s]+$/
+        }
+    }]
 });
 
 // export User
-const User = module.exports = mongoose.model("User", schema);
+const User = module.exports = mongoose.model("User", userSchema, "users");
 
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
