@@ -57,6 +57,22 @@ describe('User API', () => {
             });
     });
 
+    it('does not register a user with a duplicate username', (done) => {
+        newUser.name = "Chris Perkins";
+        newUser.email = "chris@wotc.com";
+        newUser.username = "chrisperkins";
+        newUser.password = "passhash";
+        request
+            .post(url + 'api/users/register')
+            .send(newUser)
+            .set('Content-Type', 'application/json')
+            .end((err, res) => {
+                expect(res.body.success).to.equal(false);
+                expect(res.body.errmsg).to.contain('duplicate key');
+                done();
+            });
+    });
+
     it('registers a user with valid information', (done) => {
         newUser.name = "John Smith";
         newUser.email = "jsmith@yahoo.com";
