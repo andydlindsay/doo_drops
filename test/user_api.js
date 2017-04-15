@@ -27,7 +27,7 @@ describe('User API', () => {
         const users = [{
             name: "Chris Perkins",
             email: "chris@wotc.com",
-            username: "chrisp",
+            username: "chrisperkins",
             password: "passhash"
         }];
         User.create(users, (err) => {
@@ -60,8 +60,8 @@ describe('User API', () => {
     it('registers a user with valid information', (done) => {
         newUser.name = "John Smith";
         newUser.email = "jsmith@yahoo.com";
-        newUser.username = "jsmith";
-        newUser.password = "secret";
+        newUser.username = "johnsmith";
+        newUser.password = "secretcode";
         request
             .post(url + 'api/users/register')
             .send(newUser)
@@ -78,7 +78,7 @@ describe('User API', () => {
 
     it('rejects log in attempts with invalid credentials', (done) => {
         // check with invalid username
-        newUser.username = "mjacobs";
+        newUser.username = "marcjacobs";
         request
             .post(url + 'api/users/authenticate')
             .send(newUser)
@@ -88,7 +88,7 @@ describe('User API', () => {
                 expect(res.body.msg).to.equal('User not found');
             });
         // change username back
-        newUser.username = "jsmith";
+        newUser.username = "johnsmith";
 
         // check with invalid password
         newUser.password = "known";
@@ -105,8 +105,8 @@ describe('User API', () => {
 
     it('authenticates a user with valid credentials and returns a jwt', (done) => {
         // make sure that username and password are back in original state
-        newUser.username = "jsmith";
-        newUser.password = "secret";
+        newUser.username = "johnsmith";
+        newUser.password = "secretcode";
         request
             .post(url + 'api/users/authenticate')
             .send(newUser)

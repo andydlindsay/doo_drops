@@ -6,16 +6,22 @@ const schema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        maxlength: 55
+        maxlength: 55,
+        minlength: [4,'name must be at least 4 characters long'],
+        match: /^[a-zA-Z0-9\s]+$/
     },
     email: {
         type: String,
         required: true,
+        match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
     },
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minlength: [8, 'username must be at least 8 characters long'],
+        maxlength: 25,
+        match: /^[a-zA-Z0-9\s]+$/
     },
     password: {
         type: String,
