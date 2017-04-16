@@ -32,7 +32,6 @@ const userSchema = mongoose.Schema({
             type: String,
             required: [true, 'dog name is a required field'],
             maxlength: [25, 'dog name must be less than 26 characters'],
-            minlength: [1, 'dog name must be at least 1 character long'],
             match: /^[a-zA-Z0-9]+$/
         },
         dob: {
@@ -46,11 +45,14 @@ const userSchema = mongoose.Schema({
         },
         image: {
             type: String,
-            match: /(https?:\/\/)?(www\.)?[-a-zA-Z0-9:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9:%_\+.~#?&//=]*)/ig
+            match: /(https?:\/\/)(www\.)?[-a-zA-Z0-9:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9:%_\+.~#?&//=]*)/ig
         },
         gender: {
             type: String,
             enum: ['male', 'female']
+        },
+        neutered: {
+            type: Boolean
         },
         breed: {
             type: String,

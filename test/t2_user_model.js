@@ -124,4 +124,148 @@ describe('User Schema', () => {
         done();
     });
 
+    describe('Dog Schema', () => {
+
+        before((done) => {
+
+            // populate the newUser.dog object with the basic keys
+            newUser.dogs.push({
+                name: "",
+                dob: new Date('1/1/1970'),
+                image: "",
+                gender: "",
+                breed: ""
+            });
+
+            done();
+        });
+
+        it('has a name field (required alphanumeric string, max length 25)', (done) => {
+            
+            // field should be required
+            newUser.dogs[0].name = "";
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.name'].message, 'dog name is a required field');
+
+            // field should not contain any special characters
+            newUser.dogs[0].name = "?!$%&*(#";
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.name'].name, 'ValidatorError');
+
+            // field should have a maximum length
+            newUser.dogs[0].name = "";
+            while (newUser.dogs[0].name.length < 30) {
+                newUser.dogs[0].name += "nnnnn";
+            }
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.name'].message, 'dog name must be less than 26 characters');
+
+            // field should accept a valid value
+            newUser.dogs[0].name = "Goldie";
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.name'], undefined);
+            
+            done();
+        });
+
+        it('has a dob field (date, must be earlier than current date)', (done) => {
+
+            // field should accept dates only
+            newUser.dogs[0].dob = "yesterday";
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.dob'].name, 'CastError');
+
+            // value cannot be greater than current date
+            newUser.dogs[0].dob = new Date('2/14/2018');
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.dob'].message, 'date of birth must be in the past');
+
+            // field should accept a valid value
+            newUser.dogs[0].dob = new Date('6/30/2010');
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.dob'], undefined);
+
+            done();
+        });
+
+        it('has an image field (string, must be a url)', (done) => {
+
+            // value must be a url containing http:// or https://
+            newUser.dogs[0].image = "dog.jpg";
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.image'].name, 'ValidatorError');
+
+            // field should accept a valid value
+            newUser.dogs[0].image = "https://www.amazons3.com/images/dog.jpg";
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.image'], undefined);
+
+            done();
+        });
+
+        it('has a gender field (string, enum \'male\' or \'female\')', (done) => {
+
+            // value must be either 'male' or 'female'
+            newUser.dogs[0].gender = "monkey";
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.gender'].name, 'ValidatorError');
+
+            // field should accept a valid value - 'male'
+            newUser.dogs[0].gender = "male";
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.gender'], undefined);
+
+            // field should accept a valid value - 'female'
+            newUser.dogs[0].gender = "female";
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.gender'], undefined);
+
+            done();
+        });
+
+        it('has a neutered field (boolean)', (done) => {
+
+            // field should accept a valid value - true
+            newUser.dogs[0].neutered = true;
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.neutered'], undefined);
+
+            // field should accept a valid value - false
+            newUser.dogs[0].neutered = false;
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.neutered'], undefined);
+
+            done();
+        });
+
+        it('has a breed field (alphabetic string, max length 25)', (done) => {
+
+            // field should not accept numbers
+            newUser.dogs[0].breed = 24704;
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.breed'].name, 'ValidatorError');
+
+            // field should not contain any special characters
+            newUser.dogs[0].breed = '?<>&*@#';
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.breed'].name, 'ValidatorError');
+
+            // field should have a maximum length
+            newUser.dogs[0].breed = "";
+            while (newUser.dogs[0].breed.length < 35) {
+                newUser.dogs[0].breed += "nnnnn";
+            }
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.breed'].message, 'dog breed must be less than 26 characters');
+
+            // field should accept a valid value
+            newUser.dogs[0].breed = "Lab X";
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.breed'], undefined);
+
+            done();
+        });
+
+    });
+
 });

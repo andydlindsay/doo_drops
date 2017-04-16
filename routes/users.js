@@ -50,7 +50,8 @@ router.post('/authenticate', (req, res) => {
                         id: user._id,
                         name: user.name,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        dogs: user.dogs
                     }
                 });
             } else {
@@ -62,7 +63,25 @@ router.post('/authenticate', (req, res) => {
 
 // profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res) => {
-    res.json({user: req.user})
+    User.getUserById(req.user._id, (err, user) => {
+        if (err) {
+            return res.json({success: false, msg: err.message});
+        }
+        if (user) {
+            res.json({
+                success: true,
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    username: user.username,
+                    email: user.email,
+                    dogs: user.dogs
+                }
+            });
+        } else {
+            res.json({success: false, msg: 'user not found'});
+        }
+    });
 });
 
 module.exports = router;
