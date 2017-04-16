@@ -58,6 +58,10 @@ const userSchema = mongoose.Schema({
             type: String,
             maxlength: [25, 'dog breed must be less than 26 characters'],
             match: /^[a-zA-Z\s]+$/
+        },
+        default: {
+            type: Boolean,
+            required: [true, 'default is a required field']
         }
     }]
 });

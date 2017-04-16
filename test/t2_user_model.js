@@ -225,13 +225,13 @@ describe('User Schema', () => {
 
         it('has a neutered field (boolean)', (done) => {
 
-            // field should accept a valid value - true
-            newUser.dogs[0].neutered = true;
-            let error = newUser.validateSync();
-            assert.equal(error.errors['dogs.0.neutered'], undefined);
-
             // field should accept a valid value - false
             newUser.dogs[0].neutered = false;
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.neutered'], undefined);
+            
+            // field should accept a valid value - true
+            newUser.dogs[0].neutered = true;
             error = newUser.validateSync();
             assert.equal(error.errors['dogs.0.neutered'], undefined);
 
@@ -241,7 +241,7 @@ describe('User Schema', () => {
         it('has a breed field (alphabetic string, max length 25)', (done) => {
 
             // field should not accept numbers
-            newUser.dogs[0].breed = 24704;
+            newUser.dogs[0].breed = "24704";
             let error = newUser.validateSync();
             assert.equal(error.errors['dogs.0.breed'].name, 'ValidatorError');
 
@@ -262,6 +262,26 @@ describe('User Schema', () => {
             newUser.dogs[0].breed = "Lab X";
             error = newUser.validateSync();
             assert.equal(error.errors['dogs.0.breed'], undefined);
+
+            done();
+        });
+
+        it('has a default field (required boolean)', (done) => {
+
+            // field should be required
+            delete newUser.dogs[0]['default'];
+            let error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.default'], 'default is a required field');
+
+            // field should accept a valid value - false
+            newUser.dogs[0].default = false;
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.default'], undefined);
+            
+            // field should accept a valid value - true
+            newUser.dogs[0].default = true;
+            error = newUser.validateSync();
+            assert.equal(error.errors['dogs.0.default'], undefined);
 
             done();
         });
