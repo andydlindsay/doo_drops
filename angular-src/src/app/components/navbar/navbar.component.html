@@ -1,3 +1,19 @@
-<p>
-  navbar works!
-</p>
+<md-toolbar color="primary">
+  <span><a [routerLink]="['/']">Doo Drops</a></span>
+</md-toolbar>
+
+<ul>
+  <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="['/']">Home</a></li>
+  <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="['/login']">Login</a></li>
+  <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="['/register']">Register</a></li>
+</ul>
+
+<div layout="column" layout-fill>
+  <md-toolbar>
+
+    <div class="md-toolbar-tools">
+      <h2 md-truncate flex>Doo Drops</h2>
+    </div>
+
+  </md-toolbar>
+</div>
