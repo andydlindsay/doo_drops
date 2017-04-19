@@ -2,8 +2,9 @@
     padding: 32px;
 }
 
-md-sidenav-layout.m2app-dark {
+md-sidenav-container.dark-theme {
   background: black;
+  color: white;
 }
 
 .app-content {
@@ -60,6 +61,11 @@ md-sidenav-layout.m2app-dark {
   height: 30px;
   width: 30px;
   display: inline-block;
+}
+
+md-toolbar a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 .app-input-icon {

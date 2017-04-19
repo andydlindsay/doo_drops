@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Doo Drops';
-  isDarkTheme: boolean = false;
+  isDarkTheme: boolean = true;
 
   changeTheme(): void {
     if (this.isDarkTheme) {
