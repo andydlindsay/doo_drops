@@ -220,6 +220,13 @@ describe('Doodrop Schema', () => {
                 done();
             });
 
+            it('should be an integer rounding to nearest whole number', (done) => {
+                newDoodrop.age = 2921.235;
+                assert.equal(newDoodrop.age, 2921);
+
+                done();
+            });
+
             it('should have a minimum value of 0', (done) => {
                 newDoodrop.age = -1;
                 let error = newDoodrop.validateSync();
@@ -248,6 +255,24 @@ describe('Doodrop Schema', () => {
                 newDoodrop.neutered = true;
                 error = newDoodrop.validateSync();
                 assert.equal(error, undefined);
+
+                done();
+            });
+
+        });
+
+        describe('ts:', () => {
+
+            it('should have a default value', (done) => {
+                newerDoodrop = new Doodrop({
+                    loc: {
+                        lng: 45.235,
+                        lat: 35.45
+                    },
+                    doo: true
+                });
+
+                assert.ok(newerDoodrop.ts);
 
                 done();
             });
