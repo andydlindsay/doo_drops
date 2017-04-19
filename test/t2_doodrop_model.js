@@ -37,7 +37,7 @@ describe('Doodrop Schema', () => {
                 it('should be required', (done) => {
                     newDoodrop.loc.lng = "";
                     let error = newDoodrop.validateSync();
-                    assert.equal(error.errors['loc.lng'].message, 'longitude is a required field');
+                    assert.equal(error.errors['loc.lng'].message, 'lng is a required field');
 
                     done();
                 });
@@ -81,7 +81,7 @@ describe('Doodrop Schema', () => {
                 it('should be required', (done) => {
                     newDoodrop.loc.lat = "";
                     let error = newDoodrop.validateSync();
-                    assert.equal(error.errors['loc.lat'].message, 'latitude is a required field');
+                    assert.equal(error.errors['loc.lat'].message, 'lat is a required field');
 
                     done();
                 });
@@ -264,15 +264,7 @@ describe('Doodrop Schema', () => {
         describe('ts:', () => {
 
             it('should have a default value', (done) => {
-                newerDoodrop = new Doodrop({
-                    loc: {
-                        lng: 45.235,
-                        lat: 35.45
-                    },
-                    doo: true
-                });
-
-                assert.ok(newerDoodrop.ts);
+                assert.ok(newDoodrop.ts);
 
                 done();
             });

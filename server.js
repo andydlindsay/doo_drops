@@ -27,6 +27,9 @@ const app = express();
 // user route
 const users = require('./routes/users');
 
+// doodrop route
+const doodrops = require('./routes/doodrops');
+
 // use morgan logger except during testing
 if (config.util.getEnv('NODE_ENV') !== 'test') {
     app.use(morgan('combined'));
@@ -50,6 +53,7 @@ require('./config/passport')(passport);
 
 // routes
 app.use('/api/users', users);
+app.use('/api/doodrops', doodrops);
 
 // fall through any unmatched routes
 app.use((req, res) => {

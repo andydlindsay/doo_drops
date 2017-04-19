@@ -15,13 +15,13 @@ const doodropSchema = mongoose.Schema({
             type: Number,
             min: -180,
             max: 180,
-            required: [true, 'longitude is a required field']
+            required: [true, 'lng is a required field']
         },
         lat: {
             type: Number,
             min: -90,
             max: 90,
-            required: [true, 'latitude is a required field']
+            required: [true, 'lat is a required field']
         }
     },
     doo: {
