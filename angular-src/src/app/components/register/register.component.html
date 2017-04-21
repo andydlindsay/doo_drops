@@ -4,19 +4,19 @@
     <form [formGroup]="registerForm">
       <md-input-container>
         <input type="text" required mdInput placeholder="Name" formControlName="name" id="name" dividerColor="accent">
-        <md-hint *ngIf="formErrors.name" >{{ formErrors.name }}</md-hint>
+        <md-hint *ngIf="formErrors.name">{{ formErrors.name }}</md-hint>
       </md-input-container>
       <md-input-container>
         <input type="text" required mdInput placeholder="Username" formControlName="username" id="username" dividerColor="accent">
-        <md-hint *ngIf="formErrors.username" >{{ formErrors.username }}</md-hint>
+        <md-hint *ngIf="formErrors.username">{{ formErrors.username }}</md-hint>
       </md-input-container>
       <md-input-container>
         <input type="text" required mdInput placeholder="Email" formControlName="email" id="email" dividerColor="accent">
-        <md-hint *ngIf="formErrors.email" >{{ formErrors.email }}</md-hint>
+        <md-hint *ngIf="formErrors.email">{{ formErrors.email }}</md-hint>
       </md-input-container>
       <md-input-container>
         <input required mdInput type="password" placeholder="Password" formControlName="password" id="password" dividerColor="accent">
-        <md-hint *ngIf="formErrors.password" >{{ formErrors.password }}</md-hint>
+        <md-hint *ngIf="formErrors.password">{{ formErrors.password }}</md-hint>
       </md-input-container>
       <button md-raised-button color="primary" (click)="onRegisterSubmit()">Submit</button>
     </form>

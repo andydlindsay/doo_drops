@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UservalidateService } from '../../services/uservalidate.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +9,7 @@ import { UservalidateService } from '../../services/uservalidate.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private uservalidateService: UservalidateService, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
   }
 
   registerForm: FormGroup;
