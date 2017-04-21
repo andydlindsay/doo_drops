@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UservalidateService } from '../../services/uservalidate.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -11,12 +10,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class RegisterComponent implements OnInit {
 
-  name: String;
-  username: String;
-  email: String;
-  password: String;
-
-  constructor(private uservalidateService: UservalidateService, private flashMessagesService: FlashMessagesService, private fb: FormBuilder) {
+  constructor(private uservalidateService: UservalidateService, private fb: FormBuilder) {
   }
 
   registerForm: FormGroup;
@@ -27,20 +21,21 @@ export class RegisterComponent implements OnInit {
 
   buildForm(): void {
     this.registerForm = this.fb.group({
-      'name': [this.name, [
+      'name': ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(55)
       ]],
-      'username': [this.username, [
+      'username': ['', [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(25)
       ]],
-      'email': [this.email, [
-        Validators.required
+      'email': ['', [
+        Validators.required,
+        Validators.pattern(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)
       ]],
-      'password': [this.password, [
+      'password': ['', [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(25)
@@ -88,7 +83,8 @@ export class RegisterComponent implements OnInit {
       'maxlength': 'Username cannot be more than 25 characters long.'
     },
     'email': {
-      'required': 'Email is required.'
+      'required': 'Email is required.',
+      'pattern': 'Please enter a valid email address.'
     },
     'password': {
       'required': 'Password is required.',
@@ -100,12 +96,6 @@ export class RegisterComponent implements OnInit {
   onRegisterSubmit() {
     // create a user object to hold form values
     const newUser = this.registerForm.value;
-
-    // validate email field
-    if (!this.uservalidateService.validateEmail(newUser.email)) {
-      this.flashMessagesService.show('Please enter a valid email address', { timeout: 3000 });
-      return false;
-    }
 
     // submit user to database
     console.log('GTG');

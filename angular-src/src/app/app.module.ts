@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MdToolbarModule } from '@angular/material';
 import { MaterialModule } from '@angular/material';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import 'hammerjs';
@@ -50,7 +49,6 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    // MdToolbarModule,
     MaterialModule.forRoot(),
     FlashMessagesModule
   ],
