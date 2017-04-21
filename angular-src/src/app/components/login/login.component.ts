@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
     this.loginForm.valueChanges.subscribe(data => this.onValueChanged(data));
   }
 
+  // onValueChanged function taken from the Angular Cookbook's Form Validation section
+  // https://angular.io/docs/ts/latest/cookbook/form-validation.html
   onValueChanged(data?: any) {
     if (!this.loginForm) { return; }
     const form = this.loginForm;

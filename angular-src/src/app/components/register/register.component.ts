@@ -47,6 +47,8 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  // onValueChanged function taken from the Angular Cookbook's Form Validation section
+  // https://angular.io/docs/ts/latest/cookbook/form-validation.html
   onValueChanged(data?: any) {
     if (!this.registerForm) { return; }
     const form = this.registerForm;
