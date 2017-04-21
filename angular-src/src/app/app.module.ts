@@ -19,6 +19,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 import { UservalidateService } from './services/uservalidate.service';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     UservalidateService,
-    Title
+    Title,
+    AuthService
   ],
   bootstrap: [
     AppComponent

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,13 @@ import { Title } from '@angular/platform-browser';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private titleService: Title) {
+  constructor(
+    private fb: FormBuilder,
+    private titleService: Title,
+    private auth: AuthService,
+    private flashMessage: FlashMessagesService,
+    private router: Router
+  ) {
   }
 
   registerForm: FormGroup;
@@ -107,6 +116,20 @@ export class RegisterComponent implements OnInit {
 
       // submit user to database
       console.log('GTG');
+
+      this.auth.registerUser(newUser).subscribe(data => {
+        if (data.success) {
+          this.flashMessage.show('You have successfully registered! Please log in with your username and password.', { cssClass: 'alert-success', timeout: 5000 });
+          this.router.navigate(['/login']);
+        } else {
+          if (data.errmsg.includes('E11000')) {
+            this.flashMessage.show('A user with that username already exists. Please choose a different username.', { cssClass: 'alert-failure', timeout: 5000 });
+          } else {
+            this.flashMessage.show(data.msg, { cssClass: 'alert-failure', timeout: 5000 });
+          }
+        }
+      });
+
     } else {
       console.log('Errors remain...');
     }

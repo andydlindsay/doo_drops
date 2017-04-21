@@ -5,3 +5,22 @@
 body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.alert-failure {
+    color: white;
+    border-radius: 2px;
+    padding: 5px 5px 5px 18px;
+    margin-bottom: 10px;
+    background:#F44336;
+    border:1px solid red;
+}
+
+.alert-success {
+    color: white;
+    border-radius: 2px;
+    padding: 5px 5px 5px 18px;
+    margin-bottom: 10px;
+    background:#4CAF50;
+    border:1px solid green;
+}
+

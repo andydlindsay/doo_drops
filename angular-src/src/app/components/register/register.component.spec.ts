@@ -2,6 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from '../../services/auth.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 import { RegisterComponent } from './register.component';
 import 'hammerjs';
@@ -16,10 +20,14 @@ describe('RegisterComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterTestingModule
       ],
       declarations: [ RegisterComponent ],
-      providers: []
+      providers: [
+        FlashMessagesService,
+        AuthService
+      ]
     })
     .compileComponents();
   }));
