@@ -1,3 +1,16 @@
-<p>
-  login works!
-</p>
+<md-card>
+  <md-toolbar color="primary">Login</md-toolbar>
+  <md-card-content>
+    <form [formGroup]="loginForm">
+      <md-input-container>
+        <input type="text" required mdInput placeholder="Username" formControlName="username" id="username">
+        <md-hint *ngIf="formErrors.username">{{ formErrors.username }}</md-hint>
+      </md-input-container>
+      <md-input-container>
+        <input type="password" required mdInput placeholder="Password" formControlName="password" id="password">
+        <md-hint *ngIf="formErrors.password">{{ formErrors.password }}</md-hint>
+      </md-input-container>
+      <button md-raised-button color="primary" (click)="onLoginSubmit()">Submit</button>
+    </form>
+  </md-card-content>
+</md-card>

@@ -97,11 +97,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegisterSubmit() {
-    // create a user object to hold form values
-    const newUser = this.registerForm.value;
+    if (this.registerForm.valid) {
+      // create a user object to hold form values
+      const newUser = this.registerForm.value;
 
-    // submit user to database
-    console.log('GTG');
+      // submit user to database
+      console.log('GTG');
+    } else {
+      console.log('Errors remain...');
+    }
   }
 
 }
