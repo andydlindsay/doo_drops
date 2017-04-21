@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -9,12 +10,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private titleService: Title) {
   }
 
   registerForm: FormGroup;
 
   ngOnInit(): void {
+    this.titleService.setTitle('Register - Doo Drops');
     this.buildForm();
   }
 
