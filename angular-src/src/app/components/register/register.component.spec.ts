@@ -59,6 +59,7 @@ describe('RegisterComponent', () => {
       name.setValue('nam');
       errors = name.errors || {};
       expect(errors['required']).toBeFalsy();
+      expect(errors['minlength']).toBeTruthy();
     });
 
     it('should be invalid if more than 55 characters', () => {
