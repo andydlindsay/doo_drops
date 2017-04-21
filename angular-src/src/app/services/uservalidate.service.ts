@@ -5,23 +5,8 @@ export class UservalidateService {
 
   constructor() { }
 
-  validateRegister(user) {
-    // flash
-
-    // validate name field
-    if(user.name == undefined || user.name == "") {
-
-    }
-
-
-    //   if(user.name == undefined || user.email == undefined || user.username == undefined || user.password == undefined) {
-    //     return false;
-    //   }
-    return true;
-  }
-
   validateEmail(email) {
-    const re = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
 

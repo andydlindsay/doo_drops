@@ -1,35 +1,24 @@
-<!--<h2>Register</h2>
-<form (submit)="onRegisterSubmit()">
-  <label>Name</label>
-  <input type="text" [(ngModel)]="name" name="name">
-  <label>Username</label>
-  <input type="text" [(ngModel)]="username" name="username">
-  <label>Email</label>
-  <input type="text" [(ngModel)]="email" name="email">
-  <label>Password</label>
-  <input type="password" [(ngModel)]="password" name="password">
-  <input type="submit" value="Submit">
-</form>-->
-
 <md-card>
   <md-toolbar color="primary">Register</md-toolbar>
   <md-card-content>
-    <form (submit)="onRegisterSubmit()" autocomplete="off">
+    <form [formGroup]="registerForm">
       <md-input-container>
-        <input type="text" autocomplete="off" required mdInput placeholder="Name" [(ngModel)]="name" name="name" dividerColor="accent" minlength="4" maxlength="55">
-        <!--<md-hint *ngIf="formErrors.name" >{{ formErrors.name }}</md-hint>-->
+        <input type="text" required mdInput placeholder="Name" formControlName="name" id="name" dividerColor="accent">
+        <md-hint *ngIf="formErrors.name" >{{ formErrors.name }}</md-hint>
       </md-input-container>
       <md-input-container>
-        <input type="text" required mdInput placeholder="Username" [(ngModel)]="username" name="username" dividerColor="accent" minlength="8" maxlength="25">
+        <input type="text" required mdInput placeholder="Username" formControlName="username" id="username" dividerColor="accent">
+        <md-hint *ngIf="formErrors.username" >{{ formErrors.username }}</md-hint>
       </md-input-container>
       <md-input-container>
-        <input type="text" required mdInput placeholder="Email" [(ngModel)]="email" name="email" dividerColor="accent">
+        <input type="text" required mdInput placeholder="Email" formControlName="email" id="email" dividerColor="accent">
+        <md-hint *ngIf="formErrors.email" >{{ formErrors.email }}</md-hint>
       </md-input-container>
       <md-input-container>
-        <input required mdInput type="password" placeholder="Password" [(ngModel)]="password" name="password" dividerColor="accent">
+        <input required mdInput type="password" placeholder="Password" formControlName="password" id="password" dividerColor="accent">
+        <md-hint *ngIf="formErrors.password" >{{ formErrors.password }}</md-hint>
       </md-input-container>
-      <button md-raised-button color="accent" (click)="onRegisterSubmit()">Submit</button>
+      <button md-raised-button color="primary" (click)="onRegisterSubmit()">Submit</button>
     </form>
   </md-card-content>
 </md-card>
-
