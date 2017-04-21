@@ -24,12 +24,14 @@ export class RegisterComponent implements OnInit {
       'name': ['', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(55)
+        Validators.maxLength(55),
+        Validators.pattern(/^[a-zA-Z0-9\s]+$/)
       ]],
       'username': ['', [
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(25)
+        Validators.maxLength(25),
+        Validators.pattern(/^[a-zA-Z0-9]+$/)
       ]],
       'email': ['', [
         Validators.required,
@@ -75,12 +77,14 @@ export class RegisterComponent implements OnInit {
     'name': {
       'required': 'Name is required.',
       'minlength': 'Name must be at least 4 characters long.',
-      'maxlength': 'Name cannot be more than 55 characters long.'
+      'maxlength': 'Name cannot be more than 55 characters long.',
+      'pattern': 'Name cannot contain special characters.'
     },
     'username': {
       'required': 'Username is required.',
       'minlength': 'Username must be at least 8 characters long.',
-      'maxlength': 'Username cannot be more than 25 characters long.'
+      'maxlength': 'Username cannot be more than 25 characters long.',
+      'pattern': 'Username cannot contain special characters or spaces.'
     },
     'email': {
       'required': 'Email is required.',
