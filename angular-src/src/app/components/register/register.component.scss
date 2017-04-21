@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+.red {
+    color: md-color($mat-red, 500, 1);
+}
+
+.warn {
+    color: md-color($mat-yellow);
+}
+
+.mat-input-container {
+    width: 100%
+}
+
+md-card-content {
+    padding: 16px;
+}
+

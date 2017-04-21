@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MdToolbarModule } from '@angular/material';
 import { MaterialModule } from '@angular/material';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+
+import { UservalidateService } from './services/uservalidate.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,9 +50,12 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     // MdToolbarModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    FlashMessagesModule
   ],
-  providers: [],
+  providers: [
+    UservalidateService
+  ],
   bootstrap: [
     AppComponent
   ]
