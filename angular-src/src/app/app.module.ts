@@ -20,6 +20,7 @@ import { ContactComponent } from './components/contact/contact.component';
 
 import { UservalidateService } from './services/uservalidate.service';
 import { AuthService } from './services/auth.service';
+import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    SidenavigationComponent
   ],
   imports: [
     BrowserModule,
