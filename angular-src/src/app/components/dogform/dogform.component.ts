@@ -94,9 +94,27 @@ export class DogformComponent implements OnInit {
     if (this.dogForm.valid) {
       // form is valid
       const newDog = this.dogForm.value;
-      console.log(newDog);
 
       // submit dog to database
+      this.auth.addDog(newDog).subscribe(
+        data => {
+          if (data.success) {
+            // show successful flash message
+            this.flashMessage.show('Dog successfully added!', { cssClass: 'alert-success', timeout: 5000 });
+            // redirect user to dashboard
+            this.router.navigate(['/dashboard']);
+          } else {
+            // show failure flash message
+            this.flashMessage.show(data.msg, { cssClass: 'alert-failure', timeout: 5000 });
+            // redirect user to dashboard
+            this.router.navigate(['/dashboard']);
+          }
+        },
+        err => {
+          console.log(err);
+          return false;
+        }
+      );
 
     } else {
       // form is not valid

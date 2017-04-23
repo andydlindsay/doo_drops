@@ -42,6 +42,15 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  addDog(newDog) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8080/api/users/adddog', newDog, { headers })
+      .map(res => res.json());
+  }
+
   getUserProfile() {
     let headers = new Headers();
     this.loadToken();

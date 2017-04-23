@@ -61,6 +61,20 @@ router.post('/authenticate', (req, res) => {
     });
 });
 
+// add dog
+router.post('/adddog', passport.authenticate('jwt', {session: false}), (req, res) => {
+    User.addDog(req.user._id, req.body, (err, data) => {
+        if (err) {
+            return res.json({ success: false, msg: err.message });
+        }
+        if (data) {
+            return res.json({ success: true, msg: 'Dog added successfully' });
+        } else {
+            return res.json({ success: false, msg: 'Unable to add dog' });
+        }
+    });
+});
+
 // profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res) => {
     User.getUserById(req.user._id, (err, user) => {

@@ -89,6 +89,13 @@ module.exports.addUser = function(newUser, callback) {
     });
 };
 
+module.exports.addDog = function(id, newDog, callback) {
+    const options = {
+        runValidators: true
+    }
+    User.findOneAndUpdate({ _id: id }, { $push: { dogs: newDog }}, options, callback);
+}
+
 module.exports.comparePassword = function(password, hash, callback) {
     bcrypt.compare(password, hash, (err, isMatch) => {
         if (err) throw err;
