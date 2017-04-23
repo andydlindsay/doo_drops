@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,28 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private titleService: Title) { }
+  count: Number;
+
+  constructor(
+    private titleService: Title,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {
     this.titleService.setTitle('Home - Doo Drops');
+    this.getCount();
+  }
+
+  getCount() {
+    this.auth.getDoodropCount().subscribe(
+      data => {
+        this.count = data.count;
+      },
+      err => {
+        console.log(err);
+        return false;
+      }
+    );
   }
 
 }

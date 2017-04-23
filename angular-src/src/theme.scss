@@ -2,8 +2,8 @@
 @include mat-core();
 
 // define the default theme
-$primary: mat-palette($mat-green, 500, 700, 800);
-$accent: mat-palette($mat-brown, A200, A100, A400);
+$primary: mat-palette($mat-green, 700, 800);
+$accent: mat-palette($mat-blue-grey);
 $warn: mat-palette($mat-red, 600);
 $theme: mat-light-theme($primary, $accent, $warn);
 

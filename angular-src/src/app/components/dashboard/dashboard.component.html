@@ -1,8 +1,32 @@
 <md-card>
   <div *ngIf="user">
-    <h2>{{ user.name }}</h2>
-    <hr>
-    <h3>{{ user.username }}</h3>
-    <h3>{{ user.email }}</h3>
+    <md-toolbar color="primary">{{ user.name }}</md-toolbar>
+    <md-card-content>
+      <md-card>
+        <md-toolbar color="accent">
+          Profile Info
+          <span class="app-toolbar-filler"></span>
+          <button md-icon-button md-mini-fab color="primary">
+            <md-icon>create</md-icon>
+          </button>
+        </md-toolbar>
+        <md-card-content>
+          <h4>Username: {{ user.username }}</h4>
+          <h4>Email: {{ user.email }}</h4>
+        </md-card-content>
+      </md-card>
+      <md-card>
+        <md-toolbar color="accent">
+          Dogs
+          <span class="app-toolbar-filler"></span>
+          <button md-icon-button md-mini-fab color="primary">
+            <md-icon>add</md-icon>
+          </button>
+        </md-toolbar>
+        <md-card-content>
+
+        </md-card-content>
+      </md-card>
+    </md-card-content>
   </div>
 </md-card>

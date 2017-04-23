@@ -35,6 +35,13 @@ export class AuthService {
     // this.user = user;
   }
 
+  getDoodropCount() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/api/doodrops/count', { headers })
+      .map(res => res.json());
+  }
+
   getUserProfile() {
     let headers = new Headers();
     this.loadToken();
