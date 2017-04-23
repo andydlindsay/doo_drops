@@ -20,16 +20,18 @@ import { ContactComponent } from './components/contact/contact.component';
 
 import { UservalidateService } from './services/uservalidate.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent },
+  { path: '**', redirectTo: '/' }
 ]
 
 @NgModule({
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
   providers: [
     UservalidateService,
     Title,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [
     AppComponent

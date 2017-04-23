@@ -18,12 +18,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Dashboard - Doo Drops');
-    this.auth.getUserProfile().subscribe(data => {
+    this.auth.getUserProfile().subscribe(
+      data => {
         this.user = data.user;
-    }, err => {
-      console.log(err);
-      return false;
-    });
+      }, 
+      err => {
+        console.log(err);
+        return false;
+      }
+    );
   }
 
 }

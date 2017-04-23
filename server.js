@@ -55,6 +55,11 @@ require('./config/passport')(passport);
 app.use('/api/users', users);
 app.use('/api/doodrops', doodrops);
 
+// 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/index.html'));
+});
+
 // fall through any unmatched routes
 app.use((req, res) => {
     res.sendStatus(404);
