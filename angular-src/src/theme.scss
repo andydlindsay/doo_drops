@@ -2,8 +2,8 @@
 @include mat-core();
 
 // define the default theme
-$primary: mat-palette($mat-orange, 800);
-$accent: mat-palette($mat-light-blue, 600, A100, A400);
+$primary: mat-palette($mat-green, 500, 700, 800);
+$accent: mat-palette($mat-brown, A200, A100, A400);
 $warn: mat-palette($mat-red, 600);
 $theme: mat-light-theme($primary, $accent, $warn);
 
@@ -19,4 +19,8 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 // include the alternate theme inside a block with a CSS class
 .dark-theme {
     @include angular-material-theme($dark-theme);
+}
+
+.light-theme {
+    @include angular-material-theme($theme);
 }

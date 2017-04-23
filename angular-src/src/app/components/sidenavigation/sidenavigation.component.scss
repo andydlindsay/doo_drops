@@ -81,3 +81,10 @@ md-toolbar a {
 .app-progress {
   margin: 20px;
 }
+
+#app-background {
+  background-image: url("../../../assets/images/dogfoot.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
