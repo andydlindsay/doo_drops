@@ -5,11 +5,14 @@
             <a md-list-item routerLink="/about">About</a>
             <a md-list-item routerLink="/contact">Contact Us</a>
         </md-nav-list>
-        <md-nav-list>
+        <md-nav-list *ngIf="!auth.loggedIn()">
             <a md-list-item routerLink="/login">Login</a>
             <a md-list-item routerLink="/register">Register</a>
         </md-nav-list>
-        <button md-button (click)="onLogoutClick()">LOGOUT</button>
+        <md-nav-list *ngIf="auth.loggedIn()">
+            <a md-list-item routerLink="/dashboard">Dashboard</a>
+        </md-nav-list>
+        <button md-button *ngIf="auth.loggedIn()" (click)="onLogoutClick()">LOGOUT</button>
         <hr>
         <button md-button (click)="changeTheme()">TOGGLE THEME</button>
         <hr>
@@ -21,7 +24,7 @@
         </button>
         {{ title }}
         <span class="app-toolbar-filler"></span>
-        <a routerLink="/register">Register</a><span>&nbsp;/&nbsp;</span><a routerLink="/login">Login</a>
+        <div *ngIf="!auth.loggedIn()"><a routerLink="/register">Register</a><span>&nbsp;/&nbsp;</span><a routerLink="/login">Login</a></div>
     </md-toolbar>
     <div class="app-content">
         <flash-messages></flash-messages>

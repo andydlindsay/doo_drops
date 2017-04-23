@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SidenavigationComponent implements OnInit {
 
-  title: string = 'Doo Drops';
-  isDarkTheme: boolean = true;
+  title: String = 'Doo Drops';
+  isDarkTheme: Boolean = true;
 
   constructor(
     private auth: AuthService,
