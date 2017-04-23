@@ -55,7 +55,7 @@ require('./config/passport')(passport);
 app.use('/api/users', users);
 app.use('/api/doodrops', doodrops);
 
-// 
+// add catchall route to redirect to client/index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/index.html'));
 });
