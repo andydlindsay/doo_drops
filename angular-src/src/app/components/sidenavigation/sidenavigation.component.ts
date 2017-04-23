@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class SidenavigationComponent implements OnInit {
 
   title: String = 'Doo Drops';
-  isDarkTheme: Boolean = true;
+  isDarkTheme: Boolean = false;
+  username: String;
 
   constructor(
     private auth: AuthService,
@@ -20,6 +21,10 @@ export class SidenavigationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.auth.loggedIn()) {
+      let userInfo = JSON.parse(localStorage.getItem('user'));
+      this.username = userInfo.username;
+    }
   }
 
   changeTheme(): void {

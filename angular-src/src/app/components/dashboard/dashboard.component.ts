@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit {
   
   constructor(
     private auth: AuthService,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,11 @@ export class DashboardComponent implements OnInit {
         return false;
       }
     );
+  }
+
+  onAddDogClick() {
+    // navigate to user/adddog
+    this.router.navigate(['/user/adddog']);
   }
 
 }

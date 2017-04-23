@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  loginForm: FormGroup
+  loginForm: FormGroup;
 
   ngOnInit(): void {
     this.titleService.setTitle('Login - Doo Drops');

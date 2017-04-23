@@ -1,0 +1,32 @@
+<md-card>
+  <md-toolbar color="primary">Add a dog</md-toolbar>
+  <md-card-content>
+    <form [formGroup]="dogForm">
+      <md-input-container>
+        <input type="text" mdInput placeholder="Name" formControlName="name" id="name">
+        <md-hint *ngIf="formErrors.name">{{ formErrors.name }}</md-hint>
+      </md-input-container>
+      <md-input-container>
+        <input type="text" mdInput placeholder="Breed" formControlName="breed" id="breed">
+        <md-hint *ngIf="formErrors.breed">{{ formErrors.breed }}</md-hint>
+      </md-input-container>
+      <md-input-container>
+        <input type="date" mdInput placeholder="DOB" formControlName="dob" id="dob">
+      </md-input-container>
+      <md-input-container>
+        <input type="text" mdInput placeholder="Image" formControlName="image" id="image">
+      </md-input-container>
+      <md-radio-group formControlName="gender" id="gender">
+        <md-radio-button value="female">Female</md-radio-button>
+        <md-radio-button value="male">Male</md-radio-button>
+      </md-radio-group>
+      <br>
+      <md-checkbox formControlName="neutered" id="neutered">Neutered</md-checkbox>
+      <br>
+      <md-checkbox formControlName="default" id="default">Default</md-checkbox>
+      <br>
+      <button md-raised-button color="primary" (click)="onDogFormSubmit()">Add Dog</button>
+      <button md-raised-button type="button" color="accent" (click)="onCancelClick()">Cancel</button>
+    </form>
+  </md-card-content>
+</md-card>

@@ -22,6 +22,7 @@ import { UservalidateService } from './services/uservalidate.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SidenavigationComponent } from './components/sidenavigation/sidenavigation.component';
+import { DogformComponent } from './components/dogform/dogform.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'user/adddog', component: DogformComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/' }
 ]
 
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     AboutComponent,
     ContactComponent,
-    SidenavigationComponent
+    SidenavigationComponent,
+    DogformComponent
   ],
   imports: [
     BrowserModule,
