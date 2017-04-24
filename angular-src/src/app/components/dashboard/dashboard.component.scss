@@ -2,6 +2,11 @@ md-card-content {
     padding: 16px;
 }
 
+md-card img {
+  padding: 0 24px;
+  width: 100%;
+}
+
 .app-toolbar-filler {
   flex: 1 1 auto;
 }

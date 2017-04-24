@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
     this.auth.getUserProfile().subscribe(
       data => {
         this.user = data.user;
+        console.log(this.user);
       }, 
       err => {
         console.log(err);

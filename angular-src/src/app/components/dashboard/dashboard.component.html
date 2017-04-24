@@ -24,7 +24,17 @@
           </button>
         </md-toolbar>
         <md-card-content>
-
+          <div *ngFor="let dog of user.dogs; let myIndex = index">
+            <md-card>
+              <md-toolbar color="primary">
+                {{ dog.name }}
+              </md-toolbar>
+              <img md-card-image src="{{ dog.image }}">
+              <md-card-content>
+                <button md-raised-button color="primary" type="button">Record Doodrop</button>
+              </md-card-content>
+            </md-card>
+          </div>
         </md-card-content>
       </md-card>
     </md-card-content>
