@@ -56,3 +56,7 @@ const doodropSchema = mongoose.Schema({
 
 // export doodrop
 const Doodrop = module.exports = mongoose.model("Doodrop", doodropSchema, "doodrops");
+
+module.exports.addDoodrop = function(newDoodrop, callback) {
+    newDoodrop.save(callback);
+}

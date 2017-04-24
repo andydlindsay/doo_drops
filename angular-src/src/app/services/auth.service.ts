@@ -42,6 +42,23 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  // dateDiffInDays adapted from date_diff_indays on w3resource
+  // http://www.w3resource.com/javascript-exercises/javascript-date-exercise-8.php
+  dateDiffInDays(date1, date2) {
+    const dt1 = new Date(date1);
+    const dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+  }
+
+  addDoodrop(newDoodrop) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8080/api/doodrops/add', newDoodrop, { headers })
+      .map(res => res.json());
+  }
+
   addDog(newDog) {
     let headers = new Headers();
     this.loadToken();
