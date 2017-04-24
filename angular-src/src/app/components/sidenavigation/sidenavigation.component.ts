@@ -27,6 +27,10 @@ export class SidenavigationComponent implements OnInit {
     }
   }
 
+  isLoggedIn() {
+    return this.auth.loggedIn();
+  }
+
   changeTheme(): void {
     if (this.isDarkTheme) {
       this.isDarkTheme = false;

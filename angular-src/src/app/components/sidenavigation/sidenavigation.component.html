@@ -5,14 +5,14 @@
             <a md-list-item routerLink="/about">About</a>
             <a md-list-item routerLink="/contact">Contact Us</a>
         </md-nav-list>
-        <md-nav-list *ngIf="!auth.loggedIn()">
+        <md-nav-list *ngIf="!isLoggedIn()">
             <a md-list-item routerLink="/login">Login</a>
             <a md-list-item routerLink="/register">Register</a>
         </md-nav-list>
-        <md-nav-list *ngIf="auth.loggedIn()">
+        <md-nav-list *ngIf="isLoggedIn()">
             <a md-list-item routerLink="/dashboard">Dashboard</a>
         </md-nav-list>
-        <button md-button *ngIf="auth.loggedIn()" (click)="onLogoutClick()">LOGOUT</button>
+        <button md-button *ngIf="isLoggedIn()" (click)="onLogoutClick()">LOGOUT</button>
         <hr>
         <button md-button (click)="changeTheme()">TOGGLE THEME</button>
         <hr>
@@ -25,7 +25,7 @@
         {{ title }}
         <span class="app-toolbar-filler"></span>
         <!--<div *ngIf="auth.loggedIn()">{{ username }}</div>-->
-        <div *ngIf="!auth.loggedIn()"><a routerLink="/register">Register</a><span>&nbsp;/&nbsp;</span><a routerLink="/login">Login</a></div>
+        <div *ngIf="!isLoggedIn()"><a routerLink="/register">Register</a><span>&nbsp;/&nbsp;</span><a routerLink="/login">Login</a></div>
     </md-toolbar>
     <div class="app-content">
         <flash-messages></flash-messages>
