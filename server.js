@@ -7,11 +7,22 @@ const express = require('express'),
       passport = require('passport'),
       bodyParser = require('body-parser');
 
+// require dotenv
+require('dotenv').config();
+
 // use bluebird for mongoose promises
 mongoose.Promise = require('bluebird');
 
+// build database uri
+let dbURI = 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@ds117271.mlab.com:17271/doodrops';
+
+// change database uri if testing
+if (config.util.getEnv('NODE_ENV') == 'test') {
+    dbURI = 'mongodb://localhost:27017/doodropstest';
+}
+
 // connect to the database
-mongoose.connect(config.database);
+mongoose.connect(dbURI);
 
 // on error
 mongoose.connection.on('error', (err) => {
@@ -19,7 +30,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // port number
-const port = process.env.PORT || config.port;
+const port = process.env.PORT;
 
 // create express app
 const app = express();

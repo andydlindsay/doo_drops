@@ -9,7 +9,7 @@ const chai = require('chai'),
       mongoose = require('mongoose'),
       User = require('../models/user'),
       assert = require('assert'),
-      url = 'localhost:' + config.port + '/';
+      url = 'localhost:' + process.env.PORT + '/';
 
 let newUser;
 let jwtToken;

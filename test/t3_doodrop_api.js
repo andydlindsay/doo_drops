@@ -5,11 +5,10 @@ process.env.NODE_ENV = 'test';
 const chai = require('chai'),
       expect = chai.expect,
       request = require('superagent'),
-      config = require('config'),
       mongoose = require('mongoose'),
       Doodrop = require('../models/doodrop'),
       assert = require('assert'),
-      url = 'localhost:' + config.port + '/';
+      url = 'localhost:' + process.env.PORT + '/';
 
 let newDoodrop;
 
